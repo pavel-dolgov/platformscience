@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Platform Science</string>
+    <string name="drivers_screen_title">Drivers</string>
+    <string name="assignment_screen_title">Assignment</string>
+    <string name="back_button_content_description">Back button</string>
+    <string name="suitability_score_format">%1$.2f</string>
+    <string name="error_dialog_title">Error :(</string>
+    <string name="error_dialog_positive_button_title">OK</string>
+    <string name="loading_more_items_message">Loading…</string>
+    <string name="non_retryable_error_message">An error occurred. We are actively working on resolving it. Please try again later.</string>
+    <string name="retryable_error_message">An error occurred. Please try again.</string>
+    <string name="driver_assignment_not_found_format">Assignment for driver with id %1$s is not found. Please try another driver.</string>
+    <string name="drivers_list_description">Drivers list. What\'s supported:\n-clicking on a driver shows driver\'s shipment assignment\n-refreshing a list returns random number of drivers</string>
+    <string name="driver">Driver</string>
+    <string name="shipment_address">Shipment address</string>
+    <string name="suitability_score">Suitability score</string>
+    <string name="unrecoverable_drivers_error_state_message">Oops. Something is terribly wrong happened. We are actively working on resolving the issue. Sorry for the inconvenience.</string>
+    <string name="not_found">Not found</string>
+    <string name="assignment">Assignment</string>
+    <string name="no_assignment">No assignment</string>
+</resources>

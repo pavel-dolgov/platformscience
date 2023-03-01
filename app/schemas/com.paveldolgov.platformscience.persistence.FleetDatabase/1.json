@@ -1,0 +1,159 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "eb74bf4f5fa32847cb8a375275bb09c7",
+    "entities": [
+      {
+        "tableName": "driver",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `first_name` TEXT NOT NULL, `last_name` TEXT NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "firstName",
+            "columnName": "first_name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "lastName",
+            "columnName": "last_name",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "shipment",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `address_street_number` INTEGER NOT NULL, `address_street_name` TEXT NOT NULL, `address_unit` TEXT, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "address.streetNumber",
+            "columnName": "address_street_number",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "address.streetName",
+            "columnName": "address_street_name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "address.unit",
+            "columnName": "address_unit",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "driver_assignment",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`driver_id` TEXT NOT NULL, `shipment_id` TEXT NOT NULL, `suitability_score` REAL NOT NULL, PRIMARY KEY(`driver_id`, `shipment_id`), FOREIGN KEY(`driver_id`) REFERENCES `driver`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`shipment_id`) REFERENCES `shipment`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "driverId",
+            "columnName": "driver_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "shipmentId",
+            "columnName": "shipment_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "suitabilityScore",
+            "columnName": "suitability_score",
+            "affinity": "REAL",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "driver_id",
+            "shipment_id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_driver_assignment_driver_id",
+            "unique": false,
+            "columnNames": [
+              "driver_id"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_driver_assignment_driver_id` ON `${TABLE_NAME}` (`driver_id`)"
+          },
+          {
+            "name": "index_driver_assignment_shipment_id",
+            "unique": false,
+            "columnNames": [
+              "shipment_id"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_driver_assignment_shipment_id` ON `${TABLE_NAME}` (`shipment_id`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "driver",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "driver_id"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          },
+          {
+            "table": "shipment",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "shipment_id"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          }
+        ]
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'eb74bf4f5fa32847cb8a375275bb09c7')"
+    ]
+  }
+}
